@@ -5,7 +5,7 @@ const session = require('express-session');
 const router = express.Router(); //使用分區路由不再是全局路由，使它模塊化更好管理與維護
 
 const dotenv = require('dotenv') //使用dotenv讓變數保存在後端而不是程式碼內，使資料更安全
-dotenv.config({ path: '../.env' }) //config可引入env檔
+dotenv.config({ path: '../a.env' }) //config可引入env檔
 
 const mysql = require('mysql')
 const db = mysql.createConnection({
