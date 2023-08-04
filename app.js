@@ -28,7 +28,6 @@ const path = require('path') //用nodejs自帶的path可以加入不同檔案
 const mysql = require('mysql')
 const dotenv = require('dotenv') //使用dotenv讓變數保存在後端而不是程式碼內，使資料更安全
 const port = 5000
-const ip = '192.168.0.23'
 const app = express()
 const server = http.createServer(app);
 const io = socketio(server);
@@ -132,6 +131,6 @@ io.on('connection', (socket) => {
     });
 });
 
-server.listen(port, ip, () => {
-    console.log(`服務運行網址為 http://${ip}:${port}`);
+server.listen(port,  () => {
+    console.log(`服務運行網址為 http://localhost:${port}`);
 })
