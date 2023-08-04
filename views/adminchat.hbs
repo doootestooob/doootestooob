@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{baseURL}}adminchat.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.3/socket.io.js"></script>
+    <title>客服聯絡</title>
+</head>
+
+<body>
+    <div id="chatcontainer">
+
+        <div id="chatheader">
+            <div id="exitchat" onclick="window.location.href='/admin'">退出</div>
+            顧客
+            <select id="roomSelect">
+                {{{selectroomAll}}}
+            </select>
+        </div>
+        <div id="chatbody">
+            <h1 style="text-align: center;">歡迎使用管理員系統，您可以選擇房間並與顧客對話</h1>
+
+        </div>
+        <div id="chatfooter">
+            
+                <input type="text" id="chatinput" placeholder="請輸入訊息" required>
+                <button id="chatsend">傳送</button>
+               
+        </div>
+</body>
+<script src="adminchat.js"></script>
+
+</html>

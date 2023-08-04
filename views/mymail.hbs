@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ baseURL }}personal.css">
+    <link rel="stylesheet" href="{{ baseURL }}message.css">
+    <title>我的訊息</title>
+</head>
+
+<body class="scrolladmin">
+    <div id="headerbar">
+
+        <div id="logo" onclick="window.scrollTo(0,0);window.location.href='/loginsuccess';">點餐時刻</div>
+
+        <div id="loginsystem">
+
+
+            <form action="/auth/logout" method="get">
+                <button type="submit" style="display: none;" id="logout-subbmit">
+                    <nobr>登出</nobr>
+                </button>
+            </form>
+
+            <div class="personbutton" onclick="seepersonal()">{{recordname}}</div>
+            <div class="logout-button" onclick="submitForm()">登出</div>
+        </div>
+    </div>
+
+    <div id="main">
+        <div id="personpage">
+            <div id="mymailtitle">我的訊息</div>
+            <div id="mymail">
+                {{{recordmail}}}
+            </div>
+        </div>
+
+
+        <div id="messagesbtn" onclick="window.location.href='/mymail'">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor"
+                class="bi bi-envelope-fill mailicon" viewBox="0 0 16 16">
+                <path
+                    d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
+            </svg>
+        </div>
+
+
+
+
+</body>
+<script src="{{ baseURL }}personal.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+</html>

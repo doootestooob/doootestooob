@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>線上點餐</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="{{ baseURL }}style2.css">
+    <link rel="stylesheet" href="{{ baseURL }}style3.css">
+</head>
+
+<body class="scrolladmin">
+
+    <div class="hideside">
+        <!--購物車-->
+        <div class="buycarpage">
+            <div id="buycarpagetit">{{recordname}}的餐點</div>
+            <div id="closebtn">+</div>
+            <div id="fooditems">
+                <form action="/auth/buymeals" method="post">
+                    <input type="number" name="fries" id="fries" max="15" min="0" value='{{recordfries}}'
+                        style="display: none;">
+                    <input type="number" name="smokeburger" id="smokeburger" max="15" min="0" value="{{recordsmokeburger}}"
+                        style="display: none;">
+                    <input type="number" name="beefburger" id="beefburger" max="15" min="0" value="{{recordbeefburger}}"
+                        style="display: none;">
+                    <input type="number" name="pizza" id="pizza" max="15" min="0" value="{{recordpizza}}"
+                        style="display: none;">
+                    <input type="number" name="applepie" id="applepie" max="15" min="0" value="{{recordapplepie}}"
+                        style="display: none;">
+                    <input type="number" name="momo" id="momo" max="15" min="0" value="{{recordmomo}}" style="display: none;">
+
+                    <input type="number" name="inputtime" id="inputtime" min="0" value="{{recordinputtime}}"
+                        style="display: none;">
+                    <input type="number" name="price" id="price" min="0" value="{{recordprice}}" style="display: none;">
+                    <button type="submit" id="buymealbtn"></button>
+                </form>
+                <input type="number" name="countdowntime" id="countdowntime" value="{{recordinputtime}}" min="0"
+                    style="display: none;">
+                <div id="lefttimeshow"></div>
+
+            </div>
+            <div id="total">
+                <div id="costmoney">小計：0元</div>
+                <div id="spendtime"></div>
+                <div id="finishbtn" onclick="buymealbtn()">去買單</div>
+                {{#if recordalreadyorder}}
+                <div
+                    style="color: red; background: pink;width:50%;position: relative;left: 50%;transform: translateX(-50%);font-weight:600;">
+                    {{recordalreadyorder}}
+                </div>
+                {{/if}}
+            </div>
+
+        </div>
+    </div>
+
+
+    <div id="headerbar">
+
+        <div class="personbutton" onclick="window.location.href='/auth/personalinternation'">{{recordname}}</div>
+        <div class="logout-button" onclick="window.location.href='/auth/logout'">
+            <nobr>登出</nobr>
+        </div>
+        <div id="buycar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill"
+                id="shopcar" viewBox="0 0 16 16">
+                <path
+                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+            </svg>
+            購物車
+        </div>
+        <div id="logo" onclick="window.scrollTo(0,0);window.location.href='/loginsuccess';">點餐時刻</div>
+    </div>
+
+
+    <!-- 搜尋食物介面 -->
+    <section class="food-search text-center">
+        <div class="container">
+            <input type="search" name="search" placeholder="找尋你想吃的餐點..." id="myinput" required>
+            <button class="btn btn-primary" id="mybtn">自動搜尋中</button>
+        </div>
+    </section>
+
+    <!-- 餐點菜單 -->
+    <section class="food-menu" id="mealsmenu">
+        <div class="container">
+            <h2 class="text-center">餐點菜單</h2>
+
+            <div class="food-menu-box">
+                <div class="food-menu-img">
+                    <img src="{{ baseURL }}images/frenchfrices.jpg" alt="Chicke Hawain Pizza"
+                        class="img-responsive img-curve">
+                </div>
+
+                <div class="food-menu-desc">
+                    <h4>薯條</h4>
+                    <p class="food-price">50元</p>
+                    <p class="food-detail">
+                        「炙烤香脆，薯條饗宴！」
+                    </p>
+                    <br>
+
+                    <div href="#" class="btn btn-order" id="orderfrench">加入購物車</div>
+                </div>
+            </div>
+
+            <div class="food-menu-box">
+                <div class="food-menu-img">
+                    <img src="{{ baseURL }}images/menu-burger.jpg" alt="Chicke Hawain Pizza"
+                        class="img-responsive img-curve">
+                </div>
+
+                <div class="food-menu-desc">
+                    <h4>煙熏漢堡</h4>
+                    <p class="food-price">60元</p>
+                    <p class="food-detail">
+                        「煙燻風味，濃郁多汁的美味漢堡！」
+                    </p>
+                    <br>
+
+                    <div href="#" class="btn btn-order" id="ordersmoham">加入購物車</div>
+                </div>
+            </div>
+
+            <div class="food-menu-box">
+                <div class="food-menu-img">
+                    <img src="{{ baseURL }}images/beefhamburger.jpg" alt="Chicke Hawain Burger"
+                        class="img-responsive img-curve">
+                </div>
+
+                <div class="food-menu-desc">
+                    <h4>牛肉漢堡</h4>
+                    <p class="food-price">65元</p>
+                    <p class="food-detail">
+                        「正宗牛肉，口感豐盈的絕品漢堡！」
+                    </p>
+                    <br>
+
+                    <div href="#" class="btn btn-order" id="orderbeefham">加入購物車</div>
+                </div>
+            </div>
+
+            <div class="food-menu-box">
+                <div class="food-menu-img">
+                    <img src="{{ baseURL }}images/hampizza.jpg" alt="Chicke Hawain Pizza"
+                        class="img-responsive img-curve">
+                </div>
+
+                <div class="food-menu-desc">
+                    <h4>火腿披薩</h4>
+                    <p class="food-price">300元</p>
+                    <p class="food-detail">
+                        「薄脆餅底，火腿芳香，極致美味的披薩享受！」
+                    </p>
+                    <br>
+
+                    <div href="#" class="btn btn-order" id="orderhampizza">加入購物車</div>
+                </div>
+            </div>
+
+            <div class="food-menu-box">
+                <div class="food-menu-img">
+                    <img src="{{ baseURL }}images/applepie.jpg" alt="Chicke Hawain Pizza"
+                        class="img-responsive img-curve">
+                </div>
+
+                <div class="food-menu-desc">
+                    <h4>蘋果派</h4>
+                    <p class="food-price">100元</p>
+                    <p class="food-detail">
+                        「口感酥脆，蘋果香氣四溢的絕妙派點！」
+                    </p>
+                    <br>
+
+                    <div href="#" class="btn btn-order" id="orderapplepie">加入購物車</div>
+                </div>
+            </div>
+
+            <div class="food-menu-box">
+                <div class="food-menu-img">
+                    <img src="{{ baseURL }}images/dump.png" alt="Chicke Hawain Momo" class="img-responsive img-curve">
+                </div>
+
+                <div class="food-menu-desc">
+                    <h4>餃子</h4>
+                    <p class="food-price">80元</p>
+                    <p class="food-detail">
+                        「餡料豐富，皮薄香脆，一口鮮美的餃子風味！」
+                    </p>
+                    <br>
+
+                    <div href="#" class="btn btn-order" id="ordermomo">加入購物車</div>
+                </div>
+            </div>
+
+
+
+            <div class="clearfix"></div>
+
+
+
+        </div>
+
+        <p class="text-center">
+            <a href="#">查看更多</a>
+        </p>
+    </section>
+
+
+
+    <section class="social">
+        <div class="container text-center">
+            <ul>
+                <li>
+                    <a href="#"><img src="https://img.icons8.com/fluent/50/000000/facebook-new.png" /></a>
+                </li>
+                <li>
+                    <a href="#"><img src="https://img.icons8.com/fluent/48/000000/instagram-new.png" /></a>
+                </li>
+                <li>
+                    <a href="#"><img src="https://img.icons8.com/fluent/48/000000/twitter.png" /></a>
+                </li>
+            </ul>
+        </div>
+    </section>
+    {{#if alert}}
+    <div style="z-index:99 ; color: red; background: pink;width:40%;
+        position:fixed;left: 50%;transform: translateX(-50%);font-weight:600;top:5%;
+        text-align:center;font-size:1.5rem;
+        ">
+        {{alert}}</div>
+    {{/if}}
+
+</body>
+
+<script src="{{ baseURL }}script2.js"></script>
+<script src="{{ baseURL }}script3.js"></script>
+
+
+
+</html>

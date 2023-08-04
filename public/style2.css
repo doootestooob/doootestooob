@@ -1,0 +1,520 @@
+/* CSS 全域(點餐) */
+* {
+    margin: 0 0;
+    padding: 0 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.scrolladmin {
+    overflow-y: scroll;
+}
+
+.scrolladmin.active {
+    overflow-y: hidden;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 1%;
+}
+
+.img-responsive {
+    width: 100%;
+}
+
+.img-curve {
+    border-radius: 15px;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-white {
+    color: white;
+}
+
+.clearfix {
+    clear: both;
+    float: none;
+}
+
+a {
+    color: #ff6b81;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ff4757;
+}
+
+.btn {
+    padding: 1%;
+    border: none;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.btn-order {
+    background-color: #ff6b81;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    width: 30%;
+}
+
+.btn-primary:hover {
+    color: white;
+    background-color: #ff4757;
+}
+
+.btn-primary {
+    background-color: #ff6b81;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    top: 50px;
+}
+
+.btn-primary:hover {
+    color: white;
+    background-color: #ff4757;
+}
+
+h2 {
+    color: #2f3542;
+    font-size: 2rem;
+    margin-bottom: 2%;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+
+.float-container {
+    position: relative;
+}
+
+.float-text {
+    position: absolute;
+    bottom: 50px;
+    left: 40%;
+}
+
+fieldset {
+    border: 1px solid white;
+    margin: 5%;
+    padding: 3%;
+    border-radius: 5px;
+}
+
+/*======================close購物車介面===================*/
+.buycarpage {
+    width: 90%;
+    height: 700px;
+    z-index: -1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.buycarpage.active {
+    background: white;
+    z-index: 99;
+}
+
+#closebtn {
+    position: relative;
+    float: right;
+    font-size: 100px;
+    margin-right: 2%;
+    transform: rotate(45deg);
+    cursor: pointer;
+    color: transparent;
+}
+
+
+.hideside {
+    position: fixed;
+    height: 745px;
+    width: 100%;
+    z-index: -1;
+}
+
+.hideside.active {
+    background-color: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(10px);
+    top: 0;
+    z-index: 90;
+}
+
+#buycarpagetit {
+    font-size: 50px;
+    font-weight: 600;
+    position: absolute;
+    align-items: center;
+    left: 50%;
+    top: 5%;
+    color: transparent;
+    transform: translateX(-50%);
+}
+
+@media only screen and (max-width: 600px) {
+    #buycarpagetit {
+        font-size: 30px;
+        font-weight: 600;
+        position: absolute;
+        align-items: center;
+        left: 50%;
+        top: 5%;
+        color: transparent;
+        transform: translateX(-50%);
+    }
+}
+
+#fooditems {
+    width: 100%;
+    height: 70%;
+    box-shadow: inset 1px 1px 1px 2px gray;
+    position: absolute;
+    top: 20%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    z-index: -1;
+    display: inline-block;
+
+}
+
+/*========================================================================
+/* CSS header部分 */
+#logo {
+    width: 150px;
+    height: 32px;
+    position: absolute;
+    top: 40%;
+    left: 8%;
+    font-size: 30px;
+    font-weight: 600;
+    transform: translate(-5%, -40%);
+    cursor: pointer;
+    letter-spacing: 5px;
+}
+
+#headerbar {
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    transition: 0.5s;
+    z-index: 4;
+    top: 0;
+    background: black;
+    color: white;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+#shopcar {
+    width: 50px;
+    height: 50px;
+}
+
+#buycar {
+    position: relative;
+    float: right;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5%;
+    margin-right: 5%;
+    align-items: center;
+    font-size: 18px;
+    letter-spacing: 2px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+/* CSS 搜尋*/
+
+.food-search {
+    background-image: url(./images/bg.jpg);
+    background-size: cover;
+    background-color: white;
+    
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 7% 0;
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    top: 18%;
+}
+
+.food-search input[type="search"] {
+    width: 50%;
+    padding: 1%;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    position: relative;
+    top: 50px;
+}
+
+
+
+
+
+
+/* CSS 菜單*/
+.food-menu {
+    background-color: #ececec;
+    padding: 4% 0;
+    margin-top: 40%;
+}
+
+.food-menu-box {
+    width: 43%;
+    margin: 1%;
+    padding: 2%;
+    float: left;
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.food-menu-img {
+    width: 20%;
+    float: left;
+}
+
+.food-menu-desc {
+    width: 70%;
+    float: left;
+    margin-left: 8%;
+}
+
+.food-price {
+    font-size: 1.2rem;
+    margin: 2% 0;
+}
+
+.food-detail {
+    font-size: 1rem;
+    color: #747d8c;
+}
+
+
+/* CSS 社群*/
+.social{
+    position: relative;
+    z-index: 50;
+    background:white;
+}
+
+.social ul {
+    list-style-type: none;
+}
+
+.social ul li {
+    display: inline;
+    padding: 1%;
+}
+
+/* for Order Section */
+.order {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.input-responsive {
+    width: 96%;
+    padding: 1%;
+    margin-bottom: 3%;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.order-label {
+    margin-bottom: 1%;
+    font-weight: bold;
+}
+
+
+
+/* CSS 響應式 */
+
+@media only screen and (max-width:768px) {
+    .logo {
+        width: 80%;
+        float: none;
+        margin: 1% auto;
+    }
+
+    .menu ul {
+        text-align: center;
+    }
+
+    .food-search input[type="search"] {
+        width: 90%;
+        padding: 2%;
+        margin-bottom: 3%;
+    }
+
+    .btn {
+        width: 91%;
+        padding: 2%;
+    }
+
+    .food-search {
+        padding: 10% 0;
+    }
+
+    .categories {
+        padding: 20% 0;
+    }
+
+    h2 {
+        margin-bottom: 10%;
+    }
+
+    .box-3 {
+        width: 100%;
+        margin: 4% auto;
+    }
+
+    .food-menu {
+        padding: 20% 0;
+        margin-top: 80%;
+    }
+
+    .food-menu-box {
+        width: 70%;
+        padding: 5%;
+        margin-bottom: 5%;
+    }
+
+    .social {
+        padding: 5% 0;
+    }
+
+    .order {
+        width: 100%;
+    }
+}
+
+.personbutton {
+    background: white;
+    width: 5%;
+    height: 60%;
+    border-radius: 10px;
+    font-size: 22px;
+    cursor: pointer;
+    color: black;
+    font-weight: 600;
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0.5px 0.5px 1px .5px white;
+}
+
+.logout-button {
+    background: white;
+    width: 5%;
+    height: 60%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    cursor: pointer;
+    color: black;
+    margin-left: 2%;
+    box-shadow: 0.5px 0.5px 1px .5px black;
+}
+
+#lefttimeshow{
+    display: none;
+    font-size: 50px;
+    color: red;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    
+}
+.hideside.active{
+    height: 100%;
+}
+.buycarpage.active{
+    height: 90%;
+}
+
+@media only screen and (max-width: 900px) {
+    .personbutton {
+        width: 10%;
+        height: 60%;
+        font-size: 18px;
+    }
+
+    .logout-button {
+        width: 10%;
+        height: 60%;
+        font-size: 18px;
+    }
+
+    #buycarpage {
+        width: 10%;
+        height: 60%;
+        font-size: 18px;
+    }
+    #buycar{
+        font-size: 10px;
+        margin: 0;
+    } 
+    .hideside.active{
+        height: 100%;
+    }
+    .buycarpage.active{
+        height: 90%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+   
+    .food-menu{
+       position: relative;
+       top: 0;
+    }
+    .personbutton {
+        width: 10%;
+        height: 50%;
+        font-size: 13px;
+    }
+    .logout-button {
+        width: 10%;
+        height: 50%;
+        font-size: 13px;
+    }
+    .hideside.active{
+        height: 100%;
+    }
+    .buycarpage.active{
+        height: 90%;
+    }
+   
+}

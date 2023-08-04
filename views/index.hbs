@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ baseURL }}style.css">
+    <title>點餐時刻</title>
+</head>
+
+<body class="scrolladmin">
+
+    <div id="headerbar">
+        <div id="sidebarbtn"></div>
+        <div id="logo" onclick="window.scrollTo(0,0);window.location.href='/';">點餐時刻</div>
+
+        <div id="loginsystem">
+            <div id="login">登入</div>
+            <div id="signup">註冊</div>
+        </div>
+    </div>
+    <div class="hideside"></div>
+    <div class="sidebars" id="sidebarsID">
+        <div id='loginhideside'>登入</div>
+        <div id='signuphideside'>註冊</div>
+    </div>
+
+    <div id="main">
+        <div id="maintitle">時光流轉中的美食宴 <br>&emsp;&emsp; 品味匯聚於點餐時刻</div>
+        <div id="mainbtn">
+            <div id="chatme" onclick="window.location.href='/login';">客服聯絡</div>
+            <div id="orderfood" onclick="window.location.href='/login';">立即點餐</div>
+        </div>
+
+    </div>
+    <section class="categories">
+        <div class="container">
+            <h2 class="text-center">探索你愛吃的</h2>
+
+            <a href="category-foods.html">
+                <div class="box-3 float-container">
+                    <img src="images/pizza.jpg" alt="Pizza" class="img-responsive img-curve">
+
+                    <h3 class="float-text text-white">披薩</h3>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="box-3 float-container">
+                    <img src="images/burger.jpg" alt="Burger" class="img-responsive img-curve">
+
+                    <h3 class="float-text text-white">漢堡</h3>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="box-3 float-container">
+                    <img src="images/momo.jpg" alt="Momo" class="img-responsive img-curve">
+
+                    <h3 class="float-text text-white">餃子</h3>
+                </div>
+            </a>
+
+            <div class="clearfix"></div>
+        </div>
+    </section>
+
+
+    <section class="social">
+        <div class="container text-center">
+            <ul>
+                <li>
+                    <a href="#"><img src="https://img.icons8.com/fluent/50/000000/facebook-new.png" /></a>
+                </li>
+                <li>
+                    <a href="#"><img src="https://img.icons8.com/fluent/48/000000/instagram-new.png" /></a>
+                </li>
+                <li>
+                    <a href="#"><img src="https://img.icons8.com/fluent/48/000000/twitter.png" /></a>
+                </li>
+            </ul>
+        </div>
+    </section>
+</body>
+<script src="{{ baseURL }}script.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ baseURL }}style.css">
+    <title>點餐時刻-管理員</title>
+</head>
+
+<body class="scrolladmin">
+    <div id="headerbar">
+
+        <div id="logo" onclick="window.scrollTo(0,0); window.location.href='/admin'">點餐時刻</div>
+
+        <div id="loginsystem">
+            <div class="logout-button">{{recordname}}</div>
+            <div class="logout-button" onclick="window.location.href='/auth/logout'">登出</div>
+        </div>
+    </div>
+
+
+    <div id="main">
+        <div id="maintitle">歡迎您&emsp;{{recordname}} ! <br>您將有權可以修改網站</div>
+        {{#if message}}{{message}}{{/if}}
+        <div id="mainbtn">
+            <div id="chatme" onclick="window.location.href='/adminchat'">回覆顧客</div>
+
+            <div id="orderfood" onclick="/auth/goorder">添加餐點</div>
+        </div>
+
+    </div>
+    <section class="categories">
+        <div class="container">
+            <h2 class="text-center">探索你愛吃的</h2>
+
+            <a href="#">
+                <div class="box-3 float-container">
+                    <img src="{{ baseURL }}images/pizza.jpg" alt="Pizza" class="img-responsive img-curve">
+
+                    <h3 class="float-text text-white">披薩</h3>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="box-3 float-container">
+                    <img src="{{ baseURL }}images/burger.jpg" alt="Burger" class="img-responsive img-curve">
+
+                    <h3 class="float-text text-white">漢堡</h3>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="box-3 float-container">
+                    <img src="{{ baseURL }}images/momo.jpg" alt="Momo" class="img-responsive img-curve">
+
+                    <h3 class="float-text text-white">餃子</h3>
+                </div>
+            </a>
+
+            <div class="clearfix"></div>
+        </div>
+    </section>
+
+
+    <section class="social">
+        <div class="container text-center">
+            <ul>
+                <li>
+                    <a href="#"><img src="https://img.icons8.com/fluent/50/000000/facebook-new.png" /></a>
+                </li>
+                <li>
+                    <a href="#"><img src="https://img.icons8.com/fluent/48/000000/instagram-new.png" /></a>
+                </li>
+                <li>
+                    <a href="#"><img src="https://img.icons8.com/fluent/48/000000/twitter.png" /></a>
+                </li>
+            </ul>
+        </div>
+    </section>
+</body>
+<script src="{{ baseURL }}script.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+</html>

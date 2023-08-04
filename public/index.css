@@ -1,0 +1,210 @@
+/*首頁*/
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.scrolladmin {
+    overflow-y: scroll;
+}
+
+.scrolladmin.active {
+    overflow-y: hidden;
+}
+
+#logo {
+    width: 150px;
+    height: 32px;
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    font-size: 30px;
+    font-weight: 600;
+    transform: translate(-5%, -40%);
+    cursor: pointer;
+    letter-spacing: 5px;
+}
+
+#headerbar {
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    transition: 0.5s;
+    z-index: 4;
+}
+
+#main {
+    width: 100%;
+    height: 745px;
+    background: url(./bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#options {
+    width: 100%;
+    height: 600px;
+}
+
+#sidebarbtn {
+    width: 32px;
+    height: 32px;
+    background: url(./sidebar1.png);
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translate(-5%, -50%);
+    cursor: pointer;
+
+}
+
+.hideside {
+    position: fixed;
+    height: 745px;
+    width: 100%;
+    z-index: -1;
+}
+
+.hideside.active {
+    background-color: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(10px);
+    z-index: 5;
+}
+
+.sidebars {
+    position: fixed;
+    background: none;
+    width: 300px;
+    height: 745px;
+    z-index: -1;
+    transform: translateX(-300px);
+    transition: 0.5s;
+}
+
+.sidebars.active {
+    position: fixed;
+    width: 300px;
+    height: 745px;
+    z-index: 6;
+    background: white;
+    transition: 0.5s;
+    transform: translateX(0);
+}
+
+#maintitle {
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    transform: translate(-10%, -40%);
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 80px;
+}
+
+
+#mainbtn {
+    width: 300px;
+    height: 80px;
+    position: absolute;
+    top: 65%;
+    left: 15%;
+    transform: translate(-15%, -65%);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#chatme {
+    width: 120px;
+    height: 65px;
+    background-color: white;
+    text-align: center;
+    line-height: 58px;
+    border-radius: 10px;
+    font-size: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0.5px 0.5px 1px 1px;
+    transition: 0.5s;
+}
+
+#orderfood {
+    width: 120px;
+    height: 65px;
+    background-color: black;
+    text-align: center;
+    color: white;
+    line-height: 58px;
+    border-radius: 10px;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0.5px 0.5px 1px .5px white;
+    transition: 0.5s;
+}
+
+#chatme:hover {
+    background-color: gray;
+}
+
+#orderfood:hover {
+    background-color: gray;
+}
+
+/* CSS 種類 */
+.categories {
+    padding: 4% 0;
+    font-size: 30px;
+
+}
+
+.box-3 {
+    width: 28%;
+    float: left;
+    margin: 2%;
+
+}
+
+.img-responsive {
+    width: 100%;
+}
+
+.img-curve {
+    border-radius: 15px;
+}
+
+.text-white {
+    color: white;
+}
+
+.float-container {
+    position: relative;
+}
+
+.float-text {
+    position: absolute;
+    bottom: 50px;
+    left: 40%;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 1%;
+
+}
+
+.text-center {
+    text-align: center;
+}
+
+/*=================================================*/
+
+.social ul {
+    list-style-type: none;
+}
+
+.social ul li {
+    display: inline;
+    padding: 1%;
+
+}
