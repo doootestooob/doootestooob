@@ -1,4 +1,4 @@
-var socket = io('http://192.168.0.23:5000');
+var socket = io('http://localhost:5000');
 
 // 管理員進入房間的事件處理
 socket.on('enterroom', function (room) {
