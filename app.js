@@ -131,6 +131,6 @@ io.on('connection', (socket) => {
     });
 });
 
-server.listen(port,  () => {
+server.listen('0.0.0.0',port,  () => {
     console.log(`服務運行網址為 http://localhost:${port}`);
 })
