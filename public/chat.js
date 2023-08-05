@@ -1,4 +1,4 @@
-var socket = io('http://localhost:5000');
+var socket = io('http://0.0.0.0:5000');
 
 // 顧客固定選擇房間一
 
