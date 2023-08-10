@@ -27,7 +27,7 @@ const socketio = require('socket.io');
 const path = require('path') //用nodejs自帶的path可以加入不同檔案
 const mysql = require('mysql')
 const dotenv = require('dotenv') //使用dotenv讓變數保存在後端而不是程式碼內，使資料更安全
-const port = 5000
+const port = 5001
 
 const app = express()
 const server = http.createServer(app);
