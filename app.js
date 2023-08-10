@@ -479,5 +479,5 @@ bot.listen('/linewebhook', 5000, function () {
 });
 
 server.listen(port, () => {
-    console.log(`服務運行網址為 http://${ip}:${port}`);
+    console.log(`服務運行網址為 http://localhost:${port}`);
 })
