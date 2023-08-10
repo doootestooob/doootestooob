@@ -9,7 +9,7 @@ const path = require('path');
 const fs = require('fs');
 
 
-dotenv.config({ path: './a.env' });
+dotenv.config({ path: '../a.env' });
 
 var linebot = require('linebot');
 
