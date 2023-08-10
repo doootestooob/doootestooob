@@ -478,6 +478,6 @@ bot.listen('/linewebhook', 5000, function () {
     console.log('[BOT已準備就緒]');
 });
 
-server.listen(port, ip, () => {
+server.listen(port, () => {
     console.log(`服務運行網址為 http://${ip}:${port}`);
 })
