@@ -9,16 +9,22 @@ const path = require('path');
 const fs = require('fs');
 
 
-dotenv.config({ path: './a.env' });
+dotenv.config({ path: './.env' });
 
+var linebot = require('linebot');
+
+var bot = linebot({
+    channelId: '2000338776',
+    channelSecret: '622afe9ba18595b83167fa0b251baaf6',
+    channelAccessToken: 'ohRrypzVW/bu6xWAal4vhoamz3/LOZlo2GBBzptwzo40Qro6JMeMsdZqlqOHb3rbWftgXqMS+99S3Yws8oKSll3UF0kKp6IDGvm+9Mn+2/iFKtNRstxy3Rx/GO9fNLZFh9M2EpIv3VkTJeUjy0Ga+gdB04t89/1O/w1cDnyilFU='
+});
 
 
 const db = mysql.createConnection({
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE,
-    databasePort: process.env.DATABASE_PORT
+    database: process.env.DATABASE
 })
 
 //註冊
@@ -66,7 +72,7 @@ exports.login = async (req, res) => {
     try {
         const email = req.body['=email'];
         const password = req.body['=password'];
-        
+
         if (!email || !password) { //如果沒有輸入email或password
             return res.status(400).render('login', {
                 message: '請輸入信箱和密碼'
@@ -358,46 +364,58 @@ exports.buymeals = (req, res) => {
         req.session.reqapplepie = applepie;
         req.session.reqmomo = momo;
 
-        console.log(smokeburger);
-        db.query('SELECT * FROM usersorder WHERE email = ?', [email], async (error, results) => { //從資料庫中找到email
 
-            if (results.length == 0) {
+        db.query('SELECT * FROM users WHERE email = ?', [email], async (error, results) => { //從資料庫中找到email
+            const LineID = results[0].LineID !== undefined ? results[0].LineID : null;
+            if (LineID == null || LineID == "") {
+                req.session.reqalert = "請先綁定LineID才能點餐!!";
+                return res.redirect("/personalinternation");
 
-                db.query('INSERT INTO usersorder SET ?', { email: email, homelocation: homelocation, fries: fries, inputtime: inputtime, finishstate: 0, price: price, smokeburger: smokeburger, beefburger: beefburger, pizza: pizza, applepie: applepie, momo: momo }, (error, results) => { //將資料存入資料庫
-                    if (error) {
-                        console.log(error);
-                    } else {
-                        db.query('UPDATE users SET buytimes = buytimes + 1 WHERE email = ?', [email], (error, results) => { //將資料存入資料庫
+            } else {
+                req.session.reqLineID = LineID;
+                db.query('SELECT * FROM usersorder WHERE email = ?', [email], async (error, results) => { //從資料庫中找到email
+
+                    if (results.length == 0) {
+
+                        db.query('INSERT INTO usersorder SET ?', { email: email, homelocation: homelocation, fries: fries, inputtime: inputtime, finishstate: 0, price: price, smokeburger: smokeburger, beefburger: beefburger, pizza: pizza, applepie: applepie, momo: momo, LineID: req.session.reqLineID }, (error, results) => { //將資料存入資料庫
                             if (error) {
                                 console.log(error);
                             } else {
-                                console.log(results);
+                                db.query('UPDATE users SET buytimes = buytimes + 1 WHERE email = ?', [email], (error, results) => { //將資料存入資料庫
+                                    if (error) {
+                                        console.log(error);
+                                    } else {
+                                        console.log(results);
+                                    }
+                                })
+                                startCountdown(inputtime,);
+                                req.session.alreadyorder = null;
+                                return res.redirect("/goorder");
+
                             }
                         })
-                        startCountdown(inputtime,);
-                        req.session.alreadyorder = null;
-                        return res.redirect("/goorder");
-
-                    }
-                })
-            } else if (results.length !== 0 && results[0].finishstate == 1) {
-                db.query('UPDATE usersorder SET ?', { email: email, homelocation: homelocation, fries: fries, inputtime: inputtime, finishstate: 0, price: price, smokeburger: smokeburger, beefburger: beefburger, pizza: pizza, applepie: applepie, momo: momo }, (error, results) => { //將資料存入資料庫
-                    if (error) {
-                        console.log(error);
+                    } else if (results.length !== 0 && results[0].finishstate == 1) {
+                        db.query('UPDATE usersorder SET ?', { email: email, homelocation: homelocation, fries: fries, inputtime: inputtime, finishstate: 0, price: price, smokeburger: smokeburger, beefburger: beefburger, pizza: pizza, applepie: applepie, momo: momo, LineID: req.session.reqLineID }, (error, results) => { //將資料存入資料庫
+                            if (error) {
+                                console.log(error);
+                            } else {
+                                startCountdown(inputtime);
+                                req.session.alreadyorder = null;
+                                return res.redirect("/goorder");
+                            }
+                        })
                     } else {
-                        startCountdown(inputtime);
-                        req.session.alreadyorder = null;
-                        return res.redirect("/goorder");
+                        db.query('UPDATE usersorder SET finishstate = 0 WHERE email = ?', [email], (error, results) => {
+                            req.session.alreadyorder = "已經有訂單了，請等待訂單完成!!";
+                            return res.redirect("/goorder");
+                        })
+
                     }
                 })
-            } else {
-                db.query('UPDATE usersorder SET finishstate = 0 WHERE email = ?', [email], (error, results) => {
-                    req.session.alreadyorder = "已經有訂單了，請等待訂單完成!!";
-                    return res.redirect("/goorder");
-                })
-
             }
         })
+
+
 
         function startCountdown(time) {
             const countdownInterval = setInterval(() => {
@@ -423,6 +441,8 @@ exports.buymeals = (req, res) => {
                             content: '總共' + price + '元' + '，請前往取餐!',
                             time: '時間:' + new Date().toLocaleString()
                         }
+
+
 
                         db.query('INSERT INTO usermail SET ?', { name: name, email: email, title: mail.title, content: mail.content, mailtime: mail.time }, (error, results) => { //將資料存入資料庫
                             if (error) {
