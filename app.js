@@ -46,7 +46,7 @@ const nlpManager = new NlpManager({ languages: ['zh'] });
 
 
 
-dotenv.config({ path: './.env' }) //config可引入env檔
+dotenv.config({ path: './a.env' }) //config可引入env檔
 
 
 //數據庫
